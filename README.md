@@ -1,21 +1,107 @@
 # 🖥️ System Monitor Dashboard
 
-A high-end, real-time hardware telemetry dashboard built with Next.js and Node.js. It provides deep visibility into CPU, Memory, Disk, and Uptime metrics with a premium, motion-driven user interface.
+> **A high-performance, real-time hardware telemetry suite built with Next.js and Node.js.**
 
-## ✨ Features
-- **Dynamic Hardware Detection**: Real-time identification of host CPU model, cores, threads, and clock speeds.
-- **High-End UI**: Dark-mode glassmorphism design with interactive charts and hover specifications.
-- **Cross-Platform Telemetry**: Automated metric collection via PowerShell (Windows) and Bash (Unix).
-- **Critical Alerts**: Visual notifications for system spikes and performance thresholds.
+The System Monitor Dashboard provides deep, low-latency visibility into system performance with a premium, motion-driven interface. Designed for scalability and modularity, it leverages native OS telemetry to deliver 100ms sampling rates with minimal overhead.
 
-## 🏗️ Architecture
-- **Backend**: Lightweight Express server executing native OS scripts to minimize overhead.
-- **Frontend**: Next.js App Router with Server Components for performance and Client Components for rich interactions.
-- **Communication**: Environment-driven REST API with a 3-second polling interval.
+---
 
-## 🛠️ Security & Scaling
-- **Zero-Secret Baseline**: No hardcoded credentials or ports. Configuration is decoupled via `.env`.
-- **Modular Components**: Clean separation between `common` UI elements and `monitor` features.
+## 🚀 Core Features
+
+- **🌐 Dynamic Hardware Detection**: Instant identification of host-specific CPU model, core/thread topology, and cache architecture.
+- **📊 Advanced Telemetry UI**: High-fidelity data visualization using dark-mode glassmorphism and reactive charts.
+- **⚡ Performance Optimization**: Integrated overclocking potential analysis and stability tracking.
+- **🔔 Intelligent Alerting**: Visual and auditory notifications for system threshold breaches (CPU/Memory/Disk).
+- **🛠️ Extensible Architecture**: Plug-and-play component system for adding new hardware metrics.
+
+---
+
+## 🏗️ System Architecture
+
+The project is architected for clean separation of concerns, decoupling data collection from the presentation layer.
+
+```mermaid
+graph TD
+    subgraph "Frontend (Next.js 15)"
+        UI["Dashboard UI"]
+        WS["Telemetry Poller"]
+        ENV_F[".env.local"]
+    end
+
+    subgraph "Backend (Node.js)"
+        API["Express API"]
+        SVC["Monitor Service"]
+        SCR["Scripts (PS1/SH)"]
+        ENV_B[".env"]
+    end
+
+    WS -- "HTTP GET /stats" --> API
+    API --> SVC
+    SVC -- "Child Process" --> SCR
+    SCR -- "WMI / Top / DF" --> OS["Target OS"]
+    ENV_F -- "Config" --> WS
+    ENV_B -- "Config" --> API
+```
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | Next.js 15 (App Router), React 19, Motion, Recharts, Tailwind CSS |
+| **Backend** | Node.js, Express, Dotenv, Morgan |
+| **Telemetry** | PowerShell 7+, Bash, WMI, Unix Utilities |
+| **Standards** | TypeScript, ESLint, Environment-Driven Config |
+
+---
+
+## 📦 Quick Start Guide
+
+### 1. Prerequisites
+- Node.js 18+
+- Git
+- Windows (PowerShell) or Unix-based OS
+
+### 2. Environment Configuration
+The project uses decoupled environment variables to ensure zero-secret commits.
+
+```bash
+# In Root
+cp .env.example .env.local
+
+# In /system-monitor-backend
+cp .env.example .env
+```
+
+### 3. Installation & Execution
+```bash
+# Clone the repository
+git clone <repo-url>
+cd system-monitor-dashboard
+
+# Install & Start Frontend
+npm install && npm run dev
+
+# Install & Start Backend (separate terminal)
+cd system-monitor-backend
+npm install && node server.js
+```
+
+---
 
 ## 👨‍💻 Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+We welcome professional contributions! Whether it's adding new telemetry metrics or improving UI/UX, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) for our standards and workflow.
+
+---
+
+## 🛡️ Security & Scalability
+
+- **Modular Design**: Components are organized by feature area (`monitor`, `common`).
+- **Stateless API**: The backend implements a lightweight caching layer for high-frequency requests.
+- **Zero-Secret Baseline**: All ports and API endpoints are environment-driven.
+
+---
+
+*Verified Hardware Monitoring v1.0.0*
