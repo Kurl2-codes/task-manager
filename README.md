@@ -1,20 +1,21 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🖥️ System Monitor Dashboard
 
-# Run and deploy your AI Studio app
+A high-end, real-time hardware telemetry dashboard built with Next.js and Node.js. It provides deep visibility into CPU, Memory, Disk, and Uptime metrics with a premium, motion-driven user interface.
 
-This contains everything you need to run your app locally.
+## ✨ Features
+- **Dynamic Hardware Detection**: Real-time identification of host CPU model, cores, threads, and clock speeds.
+- **High-End UI**: Dark-mode glassmorphism design with interactive charts and hover specifications.
+- **Cross-Platform Telemetry**: Automated metric collection via PowerShell (Windows) and Bash (Unix).
+- **Critical Alerts**: Visual notifications for system spikes and performance thresholds.
 
-View your app in AI Studio: https://ai.studio/apps/c59fa311-2474-4fb6-9488-f7bcfe7cf97e
+## 🏗️ Architecture
+- **Backend**: Lightweight Express server executing native OS scripts to minimize overhead.
+- **Frontend**: Next.js App Router with Server Components for performance and Client Components for rich interactions.
+- **Communication**: Environment-driven REST API with a 3-second polling interval.
 
-## Run Locally
+## 🛠️ Security & Scaling
+- **Zero-Secret Baseline**: No hardcoded credentials or ports. Configuration is decoupled via `.env`.
+- **Modular Components**: Clean separation between `common` UI elements and `monitor` features.
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 👨‍💻 Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
