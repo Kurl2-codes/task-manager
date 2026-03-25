@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Cpu, HardDrive, Activity, Clock, LayoutDashboard, Bell, Settings, Search } from 'lucide-react';
-import MetricCard from './MetricCard';
-import SystemChart from './SystemChart';
-import MetricDetails from './MetricDetails';
-import MetricDetailView from './MetricDetailView';
-import Notification from './Notification';
-import SettingsModal from './SettingsModal';
+import MetricCard from './monitor/MetricCard';
+import SystemChart from './monitor/SystemChart';
+import MetricDetails from './monitor/MetricDetails';
+import MetricDetailView from './monitor/MetricDetailView';
+import Notification from './common/Notification';
+import SettingsModal from './common/SettingsModal';
 
 export default function Dashboard() {
   const [selectedMetric, setSelectedMetric] = useState<'CPU' | 'Memory' | 'Disk' | 'Uptime'>('CPU');
