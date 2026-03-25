@@ -7,7 +7,7 @@ const SCRIPT_PATH = path.join(__dirname, '..', 'scripts', 'monitor.sh');
 // Cache configuration
 let cachedData = null;
 let lastFetchTime = 0;
-const CACHE_TTL = 3000; // 3 seconds
+const CACHE_TTL = process.env.CACHE_TTL || 3000; 
 
 // Lock mechanism to prevent overlapping executions
 let isExecuting = false;
